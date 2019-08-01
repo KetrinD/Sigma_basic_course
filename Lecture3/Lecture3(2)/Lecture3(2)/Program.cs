@@ -23,7 +23,7 @@ namespace Lecture3_2_
          float seconds = float.Parse(Console.ReadLine());
 
          float totalTimeInSeconds = hour * 3600 + minutes * 60 + seconds;
-         double miles = 1609.344;
+         float miles = 1609.344F;
 
          float speedInMetersSec = meters / totalTimeInSeconds;
          Console.WriteLine($"Your speed in meters / sec is: {speedInMetersSec}");
@@ -31,7 +31,7 @@ namespace Lecture3_2_
          float speedInKmH = (meters / 1000) / (totalTimeInSeconds / 3600);
          Console.WriteLine($"Your speed in km / h: {speedInKmH}");
 
-         float speedInMilesH = (meters / (float)miles) / (totalTimeInSeconds / 3600);
+         float speedInMilesH = (meters / miles) / (totalTimeInSeconds / 3600);
          Console.WriteLine($"Your speed in miles / h is: {speedInMilesH}");
 
          Console.ReadKey();
