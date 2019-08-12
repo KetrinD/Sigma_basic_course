@@ -22,15 +22,13 @@ namespace Sigma_basic_course
                 if (!result)
                 {
                     Console.WriteLine("Sorry, I do not now how to multiply chars :(.");
-                    Console.WriteLine("Try to input the first digit again:");
-                    result = int.TryParse(Console.ReadLine(), out x);
+                    result = inputDigit(out x);
                 }
 
                 else if (x > 10 || x < 0)
                 {
                     Console.WriteLine("Sorry, I support only digits from 0 to 10 :( ");
-                    Console.WriteLine("Try to input the first digit again:");
-                    result = int.TryParse(Console.ReadLine(), out x);
+                    result = inputDigit(out x);
                 }
 
             }
@@ -43,26 +41,27 @@ namespace Sigma_basic_course
                 if (!result)
                 {
                     Console.WriteLine("Sorry, I do not now how to multiply chars :(.");
-                    Console.WriteLine("Try to input the first digit again:");
-                    result = int.TryParse(Console.ReadLine(), out y);
+                    result = inputDigit(out y);
                 }
 
                 else if (y > 10 || y < 0)
                 {
                     Console.WriteLine("Sorry, I support only digits from 0 to 10 :( ");
-                    Console.WriteLine("Try to input the first digit again:");
-                    result = int.TryParse(Console.ReadLine(), out y);
+                    result = inputDigit(out y);
                 }
-
             }
 
-            if ((0 < x && x < 10) && (0 < y && y < 10))
-            {
                 int multiply = x * y;
                 Console.WriteLine($"Here you are: {multiply}");
                 Console.ReadKey();
-            }
-            Console.ReadKey();
+           
+                Console.ReadKey();
+        }
+
+        public static bool inputDigit(out int t)
+        {
+            Console.WriteLine("Try to input the first digit again:");
+            return int.TryParse(Console.ReadLine(), out t);
         }
     }
 }
