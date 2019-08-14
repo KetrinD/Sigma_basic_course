@@ -28,33 +28,7 @@ namespace Lecture4_1_
                  new string [] {"F2F","4"},
                  new string [] {"General meeting","7"}
                 };
-
-            Console.Write("Do it with FOREACH \n");
-
-            foreach (string[] row in input)
-            {
-                foreach (string st in row)
-                {
-                    string events = st;
-                    if (events.Length > 10)
-                    {
-                        events = events.Substring(0, 10) + "...";
-                    }
-                    int date = int.Parse(st);
-                    Days day = (Days)date;
-                    Console.Write($"{events} on {day} \n".ToLower());
-                }
-                Console.WriteLine();
-            }
-
-
-            Console.Write("\n");
-
-
-            // OR one FOR
-
-            Console.Write("Do it with one FOR \n"); 
-
+     
             for (int i = 0; i < input.GetLength(0); i++)
             {
                 string events = input[i][0];
@@ -66,32 +40,8 @@ namespace Lecture4_1_
 
                 int date = int.Parse(input[i][1]);
                 Days day = (Days)date;
-
-                Console.Write($"{events} on {day} \n".ToLower());
+                Console.Write($"{events} on {day}\n".ToLower());
             }
-
-            Console.Write("\n");
-
-            // OR two FOR
-
-            Console.Write("Do it with two FOR \n");
-
-            for (int i = 0; i < input.Length; i++)
-            { 
-                for (int j = 0; j < input[i].Length-1; j++)
-                {
-                    string events = input[i][0];
-                    if (events.Length > 10)
-                    {
-                        events = events.Substring(0, 10) + "...";
-                    }
-                    int date = int.Parse(input[i][1]);
-                    Days day = (Days)date;
-                    Console.Write($"{events} on {day} \n".ToLower());
-                }
-            }
-            Console.Write("\n");
-
 
             Console.ReadKey();
         }
