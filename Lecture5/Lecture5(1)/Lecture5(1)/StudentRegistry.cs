@@ -20,23 +20,26 @@ namespace Lecture5_1_
         {
             registry.Add(student);
         }
+
         public static void RemoveStudent(Student student)
         {
             registry.Remove(student);
         }
+
         public static string GetAllInfo()
         {
-            string output = string.Empty;
+            string allInfo = string.Empty;
             int counter = 1;
 
             foreach (Student student in registry)
             {
-                output += counter.ToString() + "." + student.GetStudentInfo() + "\n";
+                allInfo += counter.ToString() + "." + student.GetStudentInfo() + "\n";
                 counter++;
             }
-
-            return output;
+            return allInfo;
         }
     }
-    }
+}
 
+        
+ 

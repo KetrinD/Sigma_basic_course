@@ -10,9 +10,10 @@ namespace Lecture5_1_
     {
         static void Main(string[] args)
         {
-            int count = 1;
+            Console.WriteLine("How many students in your class?:");
+            int countOfStudents = Convert.ToInt32(Console.ReadLine());
 
-            for (int i = 0; i < count; i++)
+            for (int i = 1; i <= countOfStudents; i++)
             {
                 Console.WriteLine("Input student firstname");
                 string firstName = Console.ReadLine();
@@ -36,8 +37,8 @@ namespace Lecture5_1_
                 Student student = new Student(firstName, lastName, date, studentAddress_1);
                 StudentRegistry.AddStudent(student);
             }
-
             Console.WriteLine(StudentRegistry.GetAllInfo());
+            Console.ReadKey();
         }
     }
 }

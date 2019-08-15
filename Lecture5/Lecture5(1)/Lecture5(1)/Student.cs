@@ -28,9 +28,7 @@ namespace Lecture5_1_
 
         public string  GetStudentInfo()
         {
-            return $"{StudentFirstName}, {StudentLastName}, {EntryDate}, {studentAddress}";
+            return $"{StudentFirstName}, {StudentLastName}, {EntryDate}, {studentAddress.GetStudentAddress()}";
         }
-
-
     }
 }
