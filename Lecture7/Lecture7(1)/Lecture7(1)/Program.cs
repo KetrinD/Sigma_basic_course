@@ -25,8 +25,6 @@ namespace Lecture7_1_
                 Console.ReadKey();
             }
 
-            
-
             switch (command)
             {
                 case "create":
