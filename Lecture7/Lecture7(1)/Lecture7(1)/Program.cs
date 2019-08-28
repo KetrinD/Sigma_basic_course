@@ -17,50 +17,68 @@ namespace Lecture7_1_
             var commandArray = text.Trim().Split(' ');
             var command = commandArray[0];
             var filePath = commandArray[1];
+            var fileDirectory = filePath.Replace("\\test.txt.", "");
             var fileName = Path.GetFileName(filePath);
-
-            if (filePath.Length > 256)
-            {
-                Console.WriteLine("File path is too long and more than 256 characters");
-                Console.ReadKey();
-            }
 
             switch (command)
             {
                 case "create":
-
-                    if (!File.Exists(filePath))
+                    if ((!Directory.Exists(fileDirectory)) && (!File.Exists(filePath)))
                     {
-                        CreateNewFile(filePath, "The Way I Do");
-                        Console.WriteLine("File was successfully created");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Do you want to overwrite? y/n");
-                        if (Console.ReadLine().ToLower().Equals("y") ? true : false)
+                        if (filePath.Length < 256)
                         {
-                            Console.WriteLine("What do you want to write?");
-                            var text_2 = Console.ReadLine();
-                            CreateNewFile(filePath, text_2);
-                            Console.WriteLine("File was successfully overwrited");
+                            Console.WriteLine("This Directory does not exist. It will be created for you ");
+                            Directory.CreateDirectory(fileDirectory);
+                            Console.WriteLine($"Directory {fileDirectory} was successfully created ");
+
+                            CreateFile(filePath, "The Way I Do");
+                            Console.WriteLine($"File was successfully created in Directory {filePath}");
                         }
                         else
                         {
-                            Console.WriteLine("File was not overwrited");
-                            Console.ReadKey();
+                            Console.WriteLine("File path is too long and more than 256 characters");
                         }
+                    }
+                    else if ((Directory.Exists(fileDirectory)) && (!File.Exists(filePath)))
+                    {
+                        CreateFile(filePath, "The Way I Do");
+                        Console.WriteLine($"File was successfully created in Directory {filePath}");
+                    }
+
+                    else if ((Directory.Exists(fileDirectory)) && (File.Exists(filePath)))
+                    {
+                            Console.WriteLine("Do you want to overwrite this file? y/n");
+                            if (Console.ReadLine().ToLower().Equals("y") ? true : false)
+                            {
+                                Console.WriteLine("What do you want to write there?");
+                                var text_2 = Console.ReadLine();
+                                CreateFile(filePath, text_2);
+                                Console.WriteLine("File was successfully overwrited");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You said 'No'. File was not overwrited");
+                            }
                     }
                     break;
 
                 case "delete":
-                    if (File.Exists(filePath))
+                    if ((Directory.Exists(fileDirectory)) && (File.Exists(filePath)))
                     {
                         File.Delete(filePath);
                         Console.WriteLine("File was successfully deleted");
                     }
                     else
                     {
-                        Console.WriteLine("File does not exist");
+                        if (!Directory.Exists(fileDirectory))
+                        {
+                            Console.WriteLine("Directory does not exist");
+                        }
+                        else if (!File.Exists(filePath))
+                        {
+                            Console.WriteLine("File does not exist in this Directory");
+                        }
+
                     }
                     break;
 
@@ -69,7 +87,7 @@ namespace Lecture7_1_
                     {
                         Console.WriteLine("Please enter a target Path for new file: ");
                         var targetPath = Console.ReadLine();
-                        string destFile = Path.Combine(targetPath, fileName);      
+                        string destFile = Path.Combine(targetPath, fileName);
                         if (filePath != destFile)
                         {
                             Directory.CreateDirectory(targetPath);
@@ -87,11 +105,11 @@ namespace Lecture7_1_
                         Console.WriteLine("File does not exist");
                     }
                     break;
-            }    
+            }
             Console.ReadKey();
         }
-        
-        static void CreateNewFile(string filePath, string content)
+
+        static void CreateFile(string filePath, string content)
         {
             using (StreamWriter stream = new StreamWriter(filePath, false))
                 stream.WriteLine(content);
@@ -99,3 +117,5 @@ namespace Lecture7_1_
 
     }
 }
+
+
